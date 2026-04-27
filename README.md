@@ -96,6 +96,10 @@ rm ~/Library/LaunchAgents/com.user.widget-backup.plist
 
 The backup history in `~/Backups/widgets/` can be deleted manually if no longer needed.
 
+## License
+
+MIT — see [LICENSE](LICENSE) for details.
+
 ## Notes
 
 Apple does not officially document the internal widget storage format, and it may change across macOS updates. If a restore doesn't fully take effect after a major OS upgrade, a full Time Machine restore is the most reliable fallback. This tool is designed to complement Time Machine with lightweight, targeted, widget-only daily snapshots.
