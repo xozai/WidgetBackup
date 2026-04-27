@@ -8,7 +8,7 @@
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
-        <string>/Users/jleos/Library/Mobile Documents/com~apple~ScriptEditor2/Documents/Backup Widgets/backup-widgets.sh</string>
+        <string>/Users/jleos/Library/Mobile\ Documents/com\~apple\~ScriptEditor2/Documents/Backup_Widgets/backup-widgets.sh</string>
     </array>
 
     <!-- Run daily at 9:00 AM -->
