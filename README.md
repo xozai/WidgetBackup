@@ -21,6 +21,7 @@ macOS Sonoma stores widget configuration across several locations. The backup sc
 | `backup-widgets.sh` | Creates a timestamped snapshot and rotates old backups |
 | `restore-widgets.sh` | Interactive restore — pick a snapshot, restores all files |
 | `com.user.widget-backup.plist` | launchd job that runs the backup daily at 9 AM |
+| `install.sh` | One-command setup: chmod, first backup, install launchd job |
 
 ## Requirements
 
@@ -29,36 +30,26 @@ macOS Sonoma stores widget configuration across several locations. The backup sc
 
 ## Installation
 
-**1. Make the scripts executable:**
+Run the install script from Terminal — it handles permissions, runs the first backup, and registers the daily launchd job in one step:
 
 ```bash
-chmod +x "/Users/jleos/Library/Mobile Documents/com~apple~ScriptEditor2/Documents/Backup Widgets/backup-widgets.sh"
-chmod +x "/Users/jleos/Library/Mobile Documents/com~apple~ScriptEditor2/Documents/Backup Widgets/restore-widgets.sh"
-```
-
-**2. Install and activate the launchd scheduler:**
-
-```bash
-cp "/Users/jleos/Library/Mobile Documents/com~apple~ScriptEditor2/Documents/Backup Widgets/com.user.widget-backup.plist" \
-   ~/Library/LaunchAgents/
-
-launchctl load ~/Library/LaunchAgents/com.user.widget-backup.plist
-```
-
-**3. Run your first backup to verify everything works:**
-
-```bash
-bash "/Users/jleos/Library/Mobile Documents/com~apple~ScriptEditor2/Documents/Backup Widgets/backup-widgets.sh"
+bash "/Users/jleos/Library/Mobile Documents/com~apple~ScriptEditor2/Documents/Backup_Widgets/install.sh"
 ```
 
 You should see output like:
 ```
+Installing macOS widget backup...
+
+Running first backup...
 [09:00:00] Starting widget backup → /Users/jleos/Backups/widgets/20260426_090000
 [09:00:00]   ✓ Desktop widget layout (com.apple.chronod)
 [09:00:00]   ✓ WidgetKit preferences
-[09:00:00]   ✓ com.apple.widgets
 [09:00:00] Backup complete.
 [09:00:00] Done. Retained last 7 backups.
+
+Installing launchd job (daily 9 AM)...
+
+Done. Backups will run daily at 9 AM.
 ```
 
 ## Configuration

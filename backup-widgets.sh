@@ -54,7 +54,8 @@ log "Backup complete."
 TOTAL=$(ls -1d "$BACKUP_DIR"/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_* 2>/dev/null | wc -l | tr -d ' ')
 DELETE_COUNT=$(( TOTAL - KEEP_BACKUPS ))
 if [ "$DELETE_COUNT" -gt 0 ]; then
-    mapfile -t OLD < <(ls -1d "$BACKUP_DIR"/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_* 2>/dev/null | sort | head -n "$DELETE_COUNT")
+    OLD=()
+    while IFS= read -r line; do OLD+=("$line"); done < <(ls -1d "$BACKUP_DIR"/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_* 2>/dev/null | sort | head -n "$DELETE_COUNT")
     for old in "${OLD[@]}"; do
         rm -rf "$old"
         log "  Removed old backup: $(basename "$old")"

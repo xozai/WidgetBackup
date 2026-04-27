@@ -12,7 +12,8 @@ echo "=============================="
 echo ""
 
 # List available backups newest-first
-mapfile -t BACKUPS < <(ls -1d "$BACKUP_DIR"/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_* 2>/dev/null | sort -r)
+BACKUPS=()
+while IFS= read -r line; do BACKUPS+=("$line"); done < <(ls -1d "$BACKUP_DIR"/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_* 2>/dev/null | sort -r)
 
 if [ ${#BACKUPS[@]} -eq 0 ]; then
     echo "No backups found in $BACKUP_DIR"
